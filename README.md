@@ -1,6 +1,6 @@
 # project-2-mixr
 
-# Mixr is a social media website made specifically for artists and musicians. 
+# MIXR is a social media website made specifically for artists and musicians. 
 # It is a space for artists all across the globe to connect, create, and collaborate. 
 # Artists can post finished or unfinished ideas with the purpose of being peer-reviewed, seeking collaborative opportunities, or simply to show off.
 
