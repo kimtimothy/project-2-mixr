@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users')
+const Contents = require('../models/contents')
 
 //new
 router.get('/new', (req, res) => {
@@ -58,7 +59,7 @@ router.get('/logout', (req, res) => {
 //index
 router.get('/', async (req, res) => { //to show all the work of that user
     try {
-        const foundUser = await User.find({})
+        const allUsers = await User.find({})
             
         res.render('users/index.ejs', {
                 users: allUsers

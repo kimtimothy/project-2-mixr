@@ -19,13 +19,18 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 const usersController = require('./controllers/users')
-app.use('/auth', usersController)
+app.use('/users', usersController)
 
 const contentsController = require('./controllers/contents')
 app.use('/contents', contentsController)
 
 
 app.get('/', (req,res) => {
+    console.log(req.session, 'home route')
+    res.render('route.ejs')
+});
+
+app.get('/home', (req,res) => {
     console.log(req.session, 'home route')
     res.render('index.ejs')
 });
