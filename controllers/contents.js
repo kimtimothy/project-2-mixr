@@ -1,22 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const Content = require('../models/contents');
+const User = require ('../models/users');
 
 //new
 router.get('/new', (req, res) => {
-    res.render('contents/new.ejs')
+    res.render('contents/new.ejs');
 });
 
-//show
+//index
 router.get('/', async (req, res) => {
     try {
         const foundContents = await Content.find({});
-        res.render('contents/index.ejs')
+        res.render('contents/index.ejs', {
+            contents: foundContents
+        });
     } catch(err) {
-        console.log(err)
+        console.log(err);
     }
-})
+});
 
-//index
+//show
 router.get('/:id', async (req, res) => {
     try {
         const foundUser = await foundUser.findOne({'contents': req.params.id})
@@ -32,18 +36,17 @@ router.get('/:id', async (req, res) => {
                 content: foundUser.contents[0]
             });
     } catch(err) {
-        console.log(err)
+        console.log(err);
     }
 });
-
 
 //edit
 router.get('/:id/edit', async (req, res) => {
     try {
-        const allUsers = await User.find({})
+        const allUsers = await User.find({});
         
         const foundContentUser = await User.findOne({'contents': req.params.id})
-                                           .populate({path: 'contents', match: {_id: req.params.id}}) 
+                                           .populate({path: 'contents', match: {_id: req.params.id}})
                                            .exec()
 
             res.render('contents/edit.ejs', {
@@ -52,7 +55,7 @@ router.get('/:id/edit', async (req, res) => {
                 contentUser: foundContentUser
             });
     } catch(err) {
-        console.log(err)
+        console.log(err);
     }
 });
 
@@ -67,7 +70,7 @@ try {
     foundUser.articles.push(createdContent);
 
     await foundUser.save()
-    res.redirect('/contents')
+    res.redirect('/contents');
 } catch(err) {
     console.log(err)
 }
@@ -85,9 +88,9 @@ router.delete('/:id', async (req, res) => {
         foundUser.contents.remove(req.params.id);
         await foundUser.save()
 
-        res.redirect('/contents')
+        res.redirect('/contents');
     } catch(err){
-        console.log(err)
+        console.log(err);
     }
 })
 
@@ -104,16 +107,15 @@ router.put('/:id', async (req, res) => {
 
             await foundUser.save();
 
-            const newUser = await User.findById(req.body.userId)
+            const newUser = await User.findById(req.body.userId);
             newUser.contents.push(updatedContent);
 
-            res.redirect('/contents/' + req.params.id)
+            res.redirect('/contents/' + req.params.id);
         } else {
-            res.redirect('/contents/' + req.params.id)
+            res.redirect('/contents/' + req.params.id);
         }
-
     } catch(err) {
-        console.log(err)
+        console.log(err);
     }
 });
 

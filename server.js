@@ -32,7 +32,10 @@ app.get('/', (req,res) => {
 
 app.get('/home', (req,res) => {
     console.log(req.session, 'home route')
-    res.render('index.ejs')
+    res.render('index.ejs', {
+        message: req.session.message,
+        logOut: req.session.logOutMsg
+    })
 });
 
 

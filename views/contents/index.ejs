@@ -12,10 +12,9 @@
     </header>
 <main>
     <ul>
-    <% for(let i = 0; i < users.contents.length; i++) {%>
+    <% for(let i = 0; i < contents.length; i++) {%>
         <li>
-            <a href="/contents/<%=users.contents[i]._id%>"><%=users.username%></a>
-            <a href="/contents/<%=users.contents[i]._id%>"><%=contents.url%></a>
+            <a href="/contents/<%=contents[i]._id%>"><%=contents[i].url%></a>
         </li>
     <%}%>
     </ul>   

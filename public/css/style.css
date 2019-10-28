@@ -1,0 +1,142 @@
+body{
+    background-color: #845bad;
+    margin: 6rem 0 0 0;
+}
+
+.nav{
+    position: fixed;
+    border-bottom: 1px solid black;
+    width: 100%;
+    top: 0;
+    background-color: rgba(255, 255 , 255, 0.698);
+}
+
+.nav-header{
+    max-width: 75%;
+    margin: 0 auto;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+}
+
+.nav-left{
+    width: 33.333%;
+    text-align: left;
+    padding: 15px;
+}
+
+.nav-center{
+    width: 33.333%;
+    text-align: center;
+}
+
+.nav-right{
+    width: 60%;
+    text-align: right;
+}
+
+.nav-link{
+    text-decoration: none;
+    margin-left: 3%;
+    text-transform: uppercase;
+    color: black
+}
+
+.nav-link:hover{
+    color: dodgerblue;
+    cursor: pointer;
+}
+
+.hamburger-menu {
+    width: 40px;
+    height: 25px;
+    position: relative;
+    margin: 14px 15% 0 auto;
+    z-index: 2;
+    /* display: none; */
+}
+
+.bar {
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    left: 0;
+    border-radius: 6px;
+    background-color: black;
+    transition: all .50s ease-in-out;
+}
+
+.bar:nth-child(1){
+    top: 0px;
+}
+
+.bar:nth-child(2){
+    top: 22.5%;
+}
+
+.bar:nth-child(3){
+    top: 45%;
+}
+
+.open > .bar {
+    transition: all .50 ease-in-out;
+    color: white;
+}
+
+.open > .bar:nth-child(1) {
+    top: 45%;
+    transform: rotate(135deg);
+}
+
+.open > .bar:nth-child(2) {
+    left: -60px;
+    opacity: 0;
+}
+
+.open > .bar:nth-child(3) {
+    top: 45%;
+    transform: rotate(-135deg);
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    background-color: rgba(0,0,0, 0.698);
+    top: 0;
+    left: -123rem;
+    z-index: 1;
+    transition: all .60s ease-in-out;
+}
+
+.overlay.show {
+    left: 0;
+}
+
+.overlay-content {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay-link {
+    color: white;
+    text-decoration: none;
+    font-size: 36px;
+    display: block;
+}
+
+@media (max-width: 865px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-right > a {
+        display: none;
+    }
+}
+
