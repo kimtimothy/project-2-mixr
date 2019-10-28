@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <header>
+        <h1>Show page for <%=user.username%></h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/users">User Index</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>User Attributes</h2>
+            <ul>
+                <li>Username: <%=user.username%></li>
+            </ul>
+        </section>
+        <section>
+            <h2>User's Content</h2>
+            <ul>
+                <% for(let i = 0; i < user.contents.length; i++) {%>
+                    <li>
+                        <a href ="/contents/<%=user.contents[i]._id%>"><%=user.contents[i]%></a>
+                    </li>
+                <%}%>
+            </ul>
+        </section>
+        <section>
+            <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </section>
+        <section>
+            <a href="/users/<%=user._id%>/edit">Edit</a>
+        </section>
+    </main>
+</body>
+</html>
