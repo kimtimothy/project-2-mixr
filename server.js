@@ -25,11 +25,13 @@ const contentsController = require('./controllers/contents')
 app.use('/contents', contentsController)
 
 
+//route page
 app.get('/', (req,res) => {
     console.log(req.session, 'home route')
     res.render('route.ejs')
 });
 
+//home page
 app.get('/home', (req,res) => {
     console.log(req.session, 'home route')
     res.render('index.ejs', {

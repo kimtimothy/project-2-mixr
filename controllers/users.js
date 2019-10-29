@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users')
+const bcrypt = require('bcryptjs');
 
-//new
+//new user
 router.get('/signup', (req, res) => {
     res.render('users/registration.ejs')
 });
@@ -23,6 +24,21 @@ router.post('/login', async (req, res) => {
 
 //registration post
 router.post('/signup', async (req, res) => {
+    const password = req.body.password;
+    const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+
+    const userDbEntry = {};
+    userDbEntry.username = req.body.username;
+    userDbEntry.password = passwordHash;
+    
+    const createdUser = await User.create(userDbEntry);
+    console.log(createdUser)
+    req.session.username = createdUser.username;
+    req.session.logged = true;
+});
+
+//login post
+router.post('/login', async (req, res) => {
 //to find if user exists
 try {
     const user = await User.findOne({username: req.body.username})
@@ -30,7 +46,7 @@ try {
         if(bcrypt.compareSync(req.body.password, user.password)){
             req.session.message = '';
 
-            req.session.username = req.body.username
+            req.session.username = user.username
             req.session.logged = true;
             console.log(req.session)
 
@@ -111,16 +127,16 @@ router.delete('/:id', async (req, res) => {
         //collect all deletedUsers article id's
         const deletedUser = await User.findByIdAndRemove(req.params.id)
         
-        const contentsIds = [];
+        const contentIds = [];
         for(let i = 0; i < deletedUser.contents.length; i++) {
-            contentsIds.push(deletedUser.contents[i]._id);
+            contentIds.push(deletedUser.contents[i]._id);
         }
         // remove all the contents attached to User
 
         const deleteContents = await Content.deleteMany(
             {
                 _id: {
-                    $in: contentsIds
+                    $in: contentIds
                 }
             },
             res.redirect('/users')

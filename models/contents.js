@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const contentSchema = new mongoose.Schema({
+const contentSchema = mongoose.Schema({
     url: String,
     description: String,
 });
