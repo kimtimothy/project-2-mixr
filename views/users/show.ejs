@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-        <%- include("./partials/navbar.ejs") %>
+        <%- include("../partials/navbar.ejs") %>
     <header>
         <h1>Show page</h1>
         <nav>
@@ -31,9 +31,9 @@
         <section>
             <h2>User's Content</h2>
             <ul>
-                <% for(let i = 0; i < user.contents.length; i++) {%>
+                <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>
-                        <a href ="/contents/<%=user.contents[i]._id%>"><%=user.contents[i]%></a>
+                        <a href ="/contents/<%=user.content[i]._id%>"><%=user.content[i].url%></a>
                     </li>
                 <%}%>
             </ul>

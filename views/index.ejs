@@ -19,5 +19,16 @@
                 </ul>
             </nav>
     </header>
+    <main>
+        <ul>
+        <% for(let i =0; i < users.length; i++) {%>
+            <% for(let j = 0; j < users[i].content.length; j++) { %>
+                <li>
+                    <a href="/contents/<%=users[i].content[j]._id%>"><%=content[j].url%></a>
+                </li>  
+            <% } %>
+        <%}%>
+        </ul>
+    </main>
 </body>
 </html>

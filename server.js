@@ -4,6 +4,8 @@ const PORT = 3333;
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const User = require('./models/users')
+const Content = require('./models/contents')
 
 require('./db/db')
 
@@ -12,10 +14,10 @@ app.use(session({
     secret: "this is a random secret string",
     resave: false, 
     saveUninitialized: false 
-  }));
+}));
 
-app.use(express.static('public'));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 const usersController = require('./controllers/users')
@@ -32,11 +34,13 @@ app.get('/', (req,res) => {
 });
 
 //home page
-app.get('/home', (req,res) => {
+app.get('/home', async (req,res) => {
     console.log(req.session, 'home route')
+    const users = await User.find({}).populate('content')
     res.render('index.ejs', {
         message: req.session.message,
-        logOut: req.session.logOutMsg
+        logOut: req.session.logOutMsg,
+        users: users
     })
 });
 

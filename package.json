@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kimtimmy93/project-2-mixr#readme",
   "dependencies": {
+    "async-await": "^0.1.40",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
