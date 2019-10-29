@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title></title>
 </head>
 <body>
+        <%- include("../partials/navbar.ejs") %>
     <header>
-        <button action="/">Home</button>
+        <!-- <button action="/">Home</button> -->
     </header>
     <header>
         <h1>Upload Your Mix</h1>
@@ -16,7 +17,7 @@
     <main>
         <form action>
             <input type="url" name="url" placeholder="Enter url">
-            <input type="textarea" name="description" placeholder="Enter a description">
+            <textarea type="text" name="description" placeholder="Enter a description" rows="5" cols="25"></textarea>
             <button type="submit">Upload</button>
         </form>
     </main>

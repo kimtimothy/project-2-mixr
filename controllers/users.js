@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users')
-const Contents = require('../models/contents')
 
 //new
-router.get('/new', (req, res) => {
-    res.render('users/new.ejs')
+router.get('/signup', (req, res) => {
+    res.render('users/registration.ejs')
 });
 
-//login
+//login route
+router.get('/login', (req, res) => {
+    res.render('users/login.ejs')
+});
+
+//login post
 router.post('/login', async (req, res) => {
     req.session.username = req.body.username
 
@@ -17,8 +21,8 @@ router.post('/login', async (req, res) => {
     res.redirect('/users') // to feed?
 });
 
-//registration
-router.post('/registration', async (req, res) => {
+//registration post
+router.post('/signup', async (req, res) => {
 //to find if user exists
 try {
     const user = await User.findOne({username: req.body.username})
@@ -82,7 +86,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // edit
-router.get('/:id/edit', async(req, res) => {
+router.get('/:id/edit', async (req, res) => {
     try {
         const foundUser = await User.findById(req.params.id)
         res.render('users/edit.ejs')
