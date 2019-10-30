@@ -52,7 +52,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // profile
-router.get('/:id', async (req, res) => {
+router.get('/:id/profile', async (req, res) => {
     console.log("this is hitting")
     try {
         const foundUser = await User.findById(req.params.id)
@@ -133,7 +133,7 @@ router.post('/login', async (req, res) => {
             }
         } else {
             req.session.message = "the username or password is incorrect"
-            res.redirect('/home')
+            res.redirect('/')
         }
     } catch(err) {
         console.log(err)
@@ -147,7 +147,7 @@ router.post('/signup', async (req, res) => {
     try {
         if(foundUser) {
             req.session.message = "Username already taken. Please try another."
-            res.redirect('/users/registration')
+            res.redirect('/users/signup')
         } else {
             const password = req.body.password;
             const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
@@ -159,7 +159,7 @@ router.post('/signup', async (req, res) => {
             const createdUser = await User.create(userDbEntry);
             console.log(createdUser)
             req.session.username = createdUser.username;
-            req.session.id = createdUser._id;
+            req.session.userId = createdUser._id;
             req.session.logged = true;
 
             req.session.message = "You have created an account successfully!"

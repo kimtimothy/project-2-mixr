@@ -74,13 +74,13 @@ router.post('/', async (req, res) => {
 
         const [foundUser, createdContent] = await Promise.all([findUser, createContent]);
 
-        foundUser.articles.push(createdContent);
+        foundUser.contents.push(createdContent);
 
         await foundUser.save()
-        res.redirect('/profile');
-        } catch(err) {
-            res.send(err)
-        }
+        res.redirect('/contents');
+    } catch(err) {
+        res.send(err)
+    }
 });
 
 //delete

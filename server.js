@@ -41,7 +41,9 @@ app.get('/home', async (req,res) => {
         message: req.session.message,
         logOut: req.session.logOutMsg,
         users: users,
-    })
+        currentUser: req.session.userId,
+        logged: req.session.logged
+    });
 });
 
 
