@@ -17,8 +17,7 @@
     <% for(let i = 0; i < contents.length; i++) {%>
         <li>
             <a href="/contents/<%=contents[i]._id%>">
-                <img src=<%=contents[i].url%>>
-            </a>
+                <iframe src="<%=contents[i].url%>"></iframe></a>
         </li>
     <%}%>
     </ul>   

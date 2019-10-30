@@ -8,6 +8,7 @@ const User = require('./models/users')
 const Content = require('./models/contents')
 const usersController = require('./controllers/users')
 const contentsController = require('./controllers/contents')
+
 require('./db/db')
 
 
@@ -37,16 +38,17 @@ app.get('/', (req,res) => {
 app.get('/home', async (req,res) => {
     console.log(req.session, 'home route')
     const users = await User.find({}).populate('content')
+    const content = await Content.find({})
     res.render('index.ejs', {
         message: req.session.message,
         logOut: req.session.logOutMsg,
         users: users,
+        content: content,
         currentUser: req.session.userId,
         logged: req.session.logged
     });
+    console.log(content)
 });
-
-
 
 app.listen(PORT, () => {
     console.log('listening on port', 3333)
