@@ -20,6 +20,7 @@ app.use(session({
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 
 app.use('/users', usersController)
@@ -36,12 +37,10 @@ app.get('/', (req,res) => {
 app.get('/home', async (req,res) => {
     console.log(req.session, 'home route')
     const users = await User.find({}).populate('content')
-    // const user = await User.findById(req.session.id)
     res.render('index.ejs', {
         message: req.session.message,
         logOut: req.session.logOutMsg,
         users: users,
-        // user: user
     })
 });
 

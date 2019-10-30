@@ -4,8 +4,6 @@ const User = require('../models/users')
 const Content = require('../models/contents')
 const bcrypt = require('bcryptjs');
 
-
-
 //index
 router.get('/', async (req, res) => { //to show all the work of that user
     try {
@@ -78,16 +76,6 @@ router.get('/:id/edit', async (req, res) => {
     }
 });
 
-// //post
-// router.post('/', async (req, res) => {
-//     try {
-//         const createdUser = await User.create(req.body)
-//         res.redirect('/users')
-//     } catch(err) {
-//         console.log(err)
-//     }
-// });
-
 // delete 
 router.delete('/:id', async (req, res) => {
     try {
@@ -123,16 +111,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-
-// //login post
-// router.post('/login', async (req, res) => {
-//     req.session.username = req.body.username
-
-//     req.session.logged = true;
-
-//     res.redirect('/home') 
-// });
-
 //login post
 router.post('/login', async (req, res) => {
     //to find if user exists
@@ -155,7 +133,7 @@ router.post('/login', async (req, res) => {
             }
         } else {
             req.session.message = "the username or password is incorrect"
-            res.redirect('/')
+            res.redirect('/home')
         }
     } catch(err) {
         console.log(err)
@@ -167,28 +145,29 @@ router.post('/signup', async (req, res) => {
     console.log('hit register route')
     const foundUser = await User.findOne({username: req.body.username})
     try {
-    if(foundUser) {
-        req.session.message = "Username already taken. Please try another."
-        res.redirect('/')
-    } else {
-    const password = req.body.password;
-    const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+        if(foundUser) {
+            req.session.message = "Username already taken. Please try another."
+            res.redirect('/users/registration')
+        } else {
+            const password = req.body.password;
+            const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 
-    const userDbEntry = {};
-    userDbEntry.username = req.body.username;
-    userDbEntry.password = passwordHash;
+            const userDbEntry = {};
+            userDbEntry.username = req.body.username;
+            userDbEntry.password = passwordHash;
     
-    const createdUser = await User.create(userDbEntry);
-    console.log(createdUser)
-    req.session.username = createdUser.username;
-    req.session.id = createdUser._id;
-    req.session.logged = true;
+            const createdUser = await User.create(userDbEntry);
+            console.log(createdUser)
+            req.session.username = createdUser.username;
+            req.session.id = createdUser._id;
+            req.session.logged = true;
 
-    res.redirect('/users')
-    }
-    } catch(err) {
+            req.session.message = "You have created an account successfully!"
+            res.redirect('/home')
+    } 
+} catch(err) {
         console.log(err)
-    }
+}
 });
 
 
