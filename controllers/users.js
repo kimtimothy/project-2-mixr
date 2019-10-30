@@ -122,10 +122,10 @@ router.post('/login', async (req, res) => {
     
                 req.session.username = req.body.username
                 req.session.logged = true;
-                // req.session.id = user._id
+                req.session.userId = foundUser._id;
                 console.log(req.session)
     
-                res.redirect('/home');
+                res.redirect('/users/'+req.session.userId+'/profile');
             } else {
                 //if pw's dont match
                 req.session.message = "the username or password is incorrect"
@@ -163,7 +163,7 @@ router.post('/signup', async (req, res) => {
             req.session.logged = true;
 
             req.session.message = "You have created an account successfully!"
-            res.redirect('/home')
+            res.redirect('/users/'+req.session.userId+'/profile')
     } 
 } catch(err) {
         console.log(err)

@@ -16,8 +16,8 @@
         <h1>Upload Your Mix</h1>
     </header>
     <main>
-        <form action="/contents" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" placeholder="Enter url">
+        <form action="/contents" method="post">
+            <input type="url" name="url" placeholder="Enter url">
             <textarea type="text" name="description" placeholder="Enter a description" rows="5" cols="25"></textarea>
             <button type="submit">Upload</button>
         </form>

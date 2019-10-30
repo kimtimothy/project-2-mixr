@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const contentSchema = mongoose.Schema({
+    username: String,
     url: String,
     description: String,
 });

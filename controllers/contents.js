@@ -3,12 +3,20 @@ const router = express.Router();
 const Content = require('../models/contents');
 const User = require ('../models/users');
 
+const isLoggedIn = (req, res, next) => {
+    if(req.session.userId){
+        next()
+    } else {
+        res.redirect('/')
+    }
+}
 //index
 router.get('/', async (req, res) => {
+    
     try {
-        const foundContents = await Content.find({});
+        const allContents = await Content.find({});
             res.render('contents/index.ejs', {
-                contents: foundContents
+                contents: allContents
             });
         } catch(err) {
             res.send(err);
@@ -16,7 +24,7 @@ router.get('/', async (req, res) => {
 });
 
 //new
-router.get('/new', async (req, res) => {
+router.get('/new', isLoggedIn, async (req, res) => {
     try {
         const allUsers = await User.find();
 
@@ -68,15 +76,15 @@ router.get('/:id/edit', async (req, res) => {
 
 //post
 router.post('/', async (req, res) => {
+    console.log('hit the post content route')
     try {
-        const findUser = User.findById(req.body.userId);
-        const createContent = Content.create(req.body);
-
-        const [foundUser, createdContent] = await Promise.all([findUser, createContent]);
-
-        foundUser.contents.push(createdContent);
-
-        await foundUser.save()
+        const findUser = await User.findById(req.session.userId);
+        console.log(req.session.userId, 'this is req body user id')
+        console.log(findUser, 'this is user')
+        const createContent = await Content.create(req.body);
+        console.log(createContent, 'this is content')
+        findUser.content.push(createContent);
+        findUser.save()
         res.redirect('/contents');
     } catch(err) {
         res.send(err)
