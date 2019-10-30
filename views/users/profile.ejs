@@ -30,11 +30,11 @@
             <a href="/contents/new">Upload</a>
         </section>
         <section>
-            <h2>User's Profile</h2>
+            <h2>Your Mix</h2>
             <ul>
                 <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>
-                        <a href ="/contents/<%=user.content[i]._id%>"><%=user.content[i].url%></a>
+                        <a href ="/contents/<%=user.content[i]._id%>"><iframe src="<%=content[i].url%>"></iframe></a>
                     </li>
                 <%}%>
             </ul>

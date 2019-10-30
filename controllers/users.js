@@ -56,8 +56,17 @@ router.get('/:id/profile', async (req, res) => {
     console.log("this is hitting")
     try {
         const foundUser = await User.findById(req.params.id)
+        // console.log(foundUser + "THIS IS THE USER")
+        const contentObjects = [];
+        for (let i = 0; i < foundUser.content.length; i++){
+            let foundContent = await Content.findById(foundUser.content[i])
+            // console.log(foundContent+"FOUND THE THING WE ARE PUSHING")
+            contentObjects.push(foundContent)
+        }
+        console.log(contentObjects)
         res.render('users/profile.ejs', {
-            user: foundUser
+            user: foundUser,
+            content: contentObjects
         });
     } catch(err){
         console.log(err)
