@@ -77,7 +77,7 @@ router.post('/', async (req, res) => {
         foundUser.articles.push(createdContent);
 
         await foundUser.save()
-        res.redirect('/contents');
+        res.redirect('/profile');
         } catch(err) {
             res.send(err)
         }
@@ -90,7 +90,7 @@ router.delete('/:id', async (req, res) => {
 
             const findUser = User.findOne({'contents': req.params.id});
 
-            const [deletedContentResponse, foundUser] = await Promise.all ([deleteContent, findUser]);
+            const [deletedContentResponse, foundUser] = await Promise.all([deleteContent, findUser]);
         
             foundUser.contents.remove(req.params.id);
             await foundUser.save()

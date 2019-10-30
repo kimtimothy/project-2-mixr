@@ -40,6 +40,18 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// profile
+router.get('/:id/profile', async (req, res) => {
+    try {
+        const foundUser = await User.findById(req.params.id)
+        res.render('users/profile.ejs', {
+            user: foundUser
+        });
+    } catch(err){
+        console.log(err)
+    }
+});
+
 // edit
 router.get('/:id/edit', async (req, res) => {
     try {
@@ -104,7 +116,7 @@ router.post('/login', async (req, res) => {
 
     req.session.logged = true;
 
-    res.redirect('/:id/profile') 
+    res.redirect('/home') 
 });
 
 //registration post
@@ -122,7 +134,7 @@ router.post('/signup', async (req, res) => {
     req.session.username = createdUser.username;
     req.session.logged = true;
 
-    res.redirect('/profile')
+    res.redirect('/home')
 });
 
 //login post
@@ -136,9 +148,10 @@ try {
 
             req.session.username = user.username
             req.session.logged = true;
+            req.session.id = user._id
             console.log(req.session)
 
-            res.redirect('/profile');
+            res.redirect('/home');
         } else {
             //if pw's dont match
             req.session.message = "the username or password is incorrect"
