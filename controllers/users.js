@@ -4,13 +4,14 @@ const User = require('../models/users')
 const Content = require('../models/contents')
 const bcrypt = require('bcryptjs');
 
+
+
 //index
 router.get('/', async (req, res) => { //to show all the work of that user
     try {
         const allUsers = await User.find({})
-            
         res.render('users/index.ejs', {
-                users: allUsers
+                users: allUsers,
         });
     } catch(err) {
         console.log(err)
@@ -25,7 +26,19 @@ router.get('/signup', (req, res) => {
 
 //login route
 router.get('/login', (req, res) => {
+    console.log('hit the login route')
     res.render('users/login.ejs')
+});
+
+//logout
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err){
+            res.send(err);
+        } else {
+            res.redirect('/');
+        }
+    });
 });
 
 // show 
@@ -41,7 +54,8 @@ router.get('/:id', async (req, res) => {
 });
 
 // profile
-router.get('/:id/profile', async (req, res) => {
+router.get('/:id', async (req, res) => {
+    console.log("this is hitting")
     try {
         const foundUser = await User.findById(req.params.id)
         res.render('users/profile.ejs', {
@@ -110,18 +124,53 @@ router.put('/:id', async (req, res) => {
 });
 
 
+// //login post
+// router.post('/login', async (req, res) => {
+//     req.session.username = req.body.username
+
+//     req.session.logged = true;
+
+//     res.redirect('/home') 
+// });
+
 //login post
 router.post('/login', async (req, res) => {
-    req.session.username = req.body.username
-
-    req.session.logged = true;
-
-    res.redirect('/home') 
-});
+    //to find if user exists
+    try {
+        const foundUser = await User.findOne({username: req.body.username})
+        if(foundUser) {
+            if(bcrypt.compareSync(req.body.password, foundUser.password)){
+                req.session.message = '';
+    
+                req.session.username = req.body.username
+                req.session.logged = true;
+                // req.session.id = user._id
+                console.log(req.session)
+    
+                res.redirect('/home');
+            } else {
+                //if pw's dont match
+                req.session.message = "the username or password is incorrect"
+                res.redirect('/')
+            }
+        } else {
+            req.session.message = "the username or password is incorrect"
+            res.redirect('/')
+        }
+    } catch(err) {
+        console.log(err)
+    }
+    });
 
 //registration post
 router.post('/signup', async (req, res) => {
     console.log('hit register route')
+    const foundUser = await User.findOne({username: req.body.username})
+    try {
+    if(foundUser) {
+        req.session.message = "Username already taken. Please try another."
+        res.redirect('/')
+    } else {
     const password = req.body.password;
     const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 
@@ -132,50 +181,19 @@ router.post('/signup', async (req, res) => {
     const createdUser = await User.create(userDbEntry);
     console.log(createdUser)
     req.session.username = createdUser.username;
+    req.session.id = createdUser._id;
     req.session.logged = true;
 
-    res.redirect('/home')
-});
-
-//login post
-router.post('/login', async (req, res) => {
-//to find if user exists
-try {
-    const user = await User.findOne({username: req.body.username})
-    if(user) {
-        if(bcrypt.compareSync(req.body.password, user.password)){
-            req.session.message = '';
-
-            req.session.username = user.username
-            req.session.logged = true;
-            req.session.id = user._id
-            console.log(req.session)
-
-            res.redirect('/home');
-        } else {
-            //if pw's dont match
-            req.session.message = "the username or password is incorrect"
-            res.redirect('/')
-        }
-    } else {
-        req.session.message = "the username or password is incorrect"
-        res.redirect('/')
+    res.redirect('/users')
     }
-} catch(err) {
-    console.log(err)
-}
+    } catch(err) {
+        console.log(err)
+    }
 });
 
-//logout
-router.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if(err){
-            res.send(err);
-        } else {
-            res.redirect('/');
-        }
-    });
-});
+
+
+
 
 
 

@@ -6,7 +6,8 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const User = require('./models/users')
 const Content = require('./models/contents')
-
+const usersController = require('./controllers/users')
+const contentsController = require('./controllers/contents')
 require('./db/db')
 
 
@@ -20,10 +21,8 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
-const usersController = require('./controllers/users')
-app.use('/users', usersController)
 
-const contentsController = require('./controllers/contents')
+app.use('/users', usersController)
 app.use('/contents', contentsController)
 
 
@@ -37,10 +36,12 @@ app.get('/', (req,res) => {
 app.get('/home', async (req,res) => {
     console.log(req.session, 'home route')
     const users = await User.find({}).populate('content')
+    // const user = await User.findById(req.session.id)
     res.render('index.ejs', {
         message: req.session.message,
         logOut: req.session.logOutMsg,
-        users: users
+        users: users,
+        // user: user
     })
 });
 
