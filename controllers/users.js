@@ -41,10 +41,21 @@ router.get('/logout', (req, res) => {
 
 // show 
 router.get('/:id', async (req, res) => {
+    const foundUser = await User.findById(req.params.id)
+    const getContent = await Content.find({});
+    console.log(foundUser, 'this is found user')
+    console.log(getContent, 'this is found content')
     try {
         const foundUser = await User.findById(req.params.id)
+        const contentObjects = [];
+        for (let i = 0; i < foundUser.content.length; i++){
+            let foundContent = await Content.findById(foundUser.content[i])
+            // console.log(foundContent+"FOUND THE THING WE ARE PUSHING")
+            contentObjects.push(foundContent)
+        }
         res.render('users/show.ejs', {
-            user: foundUser
+            user: foundUser,
+            content: contentObjects
         })
     } catch(err){
         console.log(err)
@@ -123,6 +134,7 @@ router.put('/:id', async (req, res) => {
     console.log(oldName, 'this is old name')
     console.log(req.body.username, 'this is user name')
     const updateContent = await Content.updateMany({"username": oldName}, { $set: {'username': req.body.username}});
+
     console.log(updateContent, 'this is update content')
     console.log(updatedUser, 'this isUpdatedUser put')
     req.session.userId = updatedUser._id;
