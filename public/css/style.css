@@ -9,12 +9,17 @@ ul {
 
 /*ROUTE PAGE*/
 .carouselimg {
-    height: 1500px;
-    width: 3000px;
+    height: 300px;
+    width: 600px;
 }
 
 .carousel {
     text-align: center;
+}
+
+.carousel-text {
+    z-index: 1;
+    
 }
 
 .pcontainer {
@@ -22,25 +27,27 @@ ul {
     padding: 100px 0 100px 0;
     margin: 0 auto;
     margin-top: 50px;
-    width: 3000px;
+    width: 600px;
+    height: 100px;
     text-align: center;
     
 }
 
 .mixrp {
     text-align: center;
-    padding: 100px 0 100px 0;
-    font-size: 35pt;
+    padding: 0 0 100px 0;
+    font-size: 10pt;
+    position: relative;
 }
 
 .login {
-    font-size: 25pt;
+    font-size: 15pt;
     text-align: right;
     padding: 0;
 }
 
 .signup {
-    font-size: 25pt;
+    font-size: 15pt;
     text-align: right;
     padding: 0;
 }
@@ -69,6 +76,7 @@ ul {
     border: solid black 3px;
 }
 
+/*NAV BAR*/
 .nav{
     position: fixed;
     border-bottom: 1px solid black;
