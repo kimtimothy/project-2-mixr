@@ -118,7 +118,7 @@ router.delete('/:id', async (req, res) => {
                     $in: contentIds
                 }
             },
-            res.redirect('/users')
+            res.redirect('/')
         )
     } catch(err) {
         console.log(err)

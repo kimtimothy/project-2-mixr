@@ -8,13 +8,16 @@
     <link rel="stylesheet" href="/css/style.css">
     <title></title>
 </head>
-<body> 
+<body>   
     <header>
+        <!-- <img src="images/free.jpg" width="100%" height="400" class="free"> -->
         <a href="/users/login" class="login">Sign In</a>
         <a href="/users/signup" class="signup">Create Account</a>
         <h1 class="welcome">Welcome to Mixr</h1>
-        <p>Mixr is a creative space where musicians of all genres, levels, and backgrounds come together to create, connect, and collaborate.</p>
-        <img src="images/free.jpg" width="100%" height="400" class="free">
     </header>
+    <%- include("./partials/carousel.ejs") %>
+    <div class="pcontainer">
+        <p class="mixrp">Mixr is a creative space where musicians of all genres, levels, and backgrounds come together to create, connect, and collaborate.</p>
+    </div>
 </body>
 </html>

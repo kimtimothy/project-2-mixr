@@ -1,10 +1,51 @@
-body{
-    background-color: #845bad;
+body {
+    background-color: white;
     margin: 6rem 0 0 0;
 }
 
 ul {
     list-style-type: none;
+}
+
+.carouselimg {
+    height: 1500px;
+    width: 3000px;
+}
+
+.carousel {
+    text-align: center;
+}
+
+.pcontainer {
+    background-color: rgba(0,0,0, 0.5);
+    padding: 100px 0 100px 0;
+    margin: 0 auto;
+    width: 3000px;
+    text-align: center;
+    
+}
+
+.mixrp {
+    text-align: center;
+    padding: 100px 0 100px 0;
+}
+
+/* .free {
+    padding: 0;
+    margin: 0 auto;
+    z-index: -1;
+    display: flex;
+    position: fixed;
+} */
+
+.welcome {
+    padding: 0;
+    text-align: center;
+    color: white;
+}
+
+.mixr {
+    color: grey
 }
 
 .nav{
