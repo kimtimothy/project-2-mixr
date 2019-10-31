@@ -107,8 +107,8 @@ router.delete('/:id', async (req, res) => {
         const deletedUser = await User.findByIdAndRemove(req.params.id)
         
         const contentIds = [];
-        for(let i = 0; i < deletedUser.contents.length; i++) {
-            contentIds.push(deletedUser.contents[i]._id);
+        for(let i = 0; i < deletedUser.content.length; i++) {
+            contentIds.push(deletedUser.content[i]._id);
         }
         // remove all the contents attached to User
 
