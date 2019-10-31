@@ -36,18 +36,29 @@ app.get('/', (req,res) => {
 
 //home page
 app.get('/home', async (req,res) => {
+    if(!req.session.userId) {
+        res.redirect('/')
+    }
     console.log(req.session, 'home route')
-    const users = await User.find({}).populate('content')
-    const content = await Content.find({})
-    res.render('index.ejs', {
-        message: req.session.message,
-        logOut: req.session.logOutMsg,
-        users: users,
-        content: content,
-        currentUser: req.session.userId,
-        logged: req.session.logged
-    });
-    console.log(content)
+    const foundUser = await User.findById(req.session.userId)
+    console.log(req.session.userId)
+    try {
+        const users = await User.find({}).populate('content')
+        const content = await Content.find({})
+        console.log(foundUser, 'this is founduserrr')
+        res.render('index.ejs', {
+            message: req.session.message,
+            logOut: req.session.logOutMsg,
+            users: users,
+            content: content,
+            user: foundUser,
+            currentUser: req.session.userId,
+            logged: req.session.logged
+        });
+    } catch(err) {
+        console.log(err)
+    }
+   
 });
 
 app.listen(PORT, () => {
