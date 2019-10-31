@@ -39,19 +39,19 @@ app.get('/home', async (req,res) => {
     if(!req.session.userId) {
         res.redirect('/')
     }
-    console.log(req.session, 'home route')
-    const foundUser = await User.findById(req.session.userId)
-    console.log(req.session.userId)
-    try {
+    try{
+        console.log(req.session, 'home route')
+        const allUsers = await User.find({})
+        console.log(req.session.userId, 'idddd')
         const users = await User.find({}).populate('content')
         const content = await Content.find({})
-        console.log(foundUser, 'this is founduserrr')
+        console.log(allUsers, 'this is founduserrr')
         res.render('index.ejs', {
             message: req.session.message,
             logOut: req.session.logOutMsg,
             users: users,
             content: content,
-            user: foundUser,
+            user: allUsers,
             currentUser: req.session.userId,
             logged: req.session.logged
         });
