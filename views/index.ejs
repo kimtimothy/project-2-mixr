@@ -29,15 +29,26 @@
         <ul>
         <% for(let i = 0; i < users.length; i++) {%>
             <% for(let j = 0; j < users[i].content.length; j++) {%>
-                    <li>
-                        <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
+                <div class="card" style="width: 31rem;">
+                    <a href="/contents/<%=users[i].content[j]._id%>" class="card-img-top"> 
+                        <iframe src="<%=content[j].url%>"></iframe>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Description</h5>
+                        <p><%=users[i].content[j].description%></p>
+                        <a href="/users/<%=users[i]._id%>"<%=users[i].username%> class="btn btn-primary"><%=users[i].username%></a>
+                    </div>
+                </div>
+
+                <!-- <li>
+                        <a href="/users/users[i]._id%>">users[i].username%></a>
                     </li>
                     <li>
-                        <a href="/contents/<%=users[i].content[j]._id%>"> 
-                            <iframe src="<%=content[j].url%>"></iframe>
+                        <a href="/contents/users[i].content[j]._id%>"> 
+                            <iframe src="content[j].url%>"></iframe>
                         </a>
                     </li>
-                        <p><%=users[i].content[j].description%></p>
+                        <p><users[i].content[j].description%></p> -->
                     <%}%>
                     
             <%}%>

@@ -7,6 +7,7 @@ ul {
     list-style-type: none;
 }
 
+/*ROUTE PAGE*/
 .carouselimg {
     height: 1500px;
     width: 3000px;
@@ -20,6 +21,7 @@ ul {
     background-color: rgba(0,0,0, 0.5);
     padding: 100px 0 100px 0;
     margin: 0 auto;
+    margin-top: 50px;
     width: 3000px;
     text-align: center;
     
@@ -28,6 +30,19 @@ ul {
 .mixrp {
     text-align: center;
     padding: 100px 0 100px 0;
+    font-size: 35pt;
+}
+
+.login {
+    font-size: 25pt;
+    text-align: right;
+    padding: 0;
+}
+
+.signup {
+    font-size: 25pt;
+    text-align: right;
+    padding: 0;
 }
 
 /* .free {
@@ -41,11 +56,17 @@ ul {
 .welcome {
     padding: 0;
     text-align: center;
-    color: white;
+    color: black;
 }
 
 .mixr {
-    color: grey
+    color: grey;
+}
+
+/*HOME PAGE*/
+.card {
+    text-align: center;
+    border: solid black 3px;
 }
 
 .nav{
