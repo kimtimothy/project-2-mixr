@@ -96,6 +96,8 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
             const deleteContent = await Content.findByIdAndRemove(req.params.id);
+            console.log(deleteContent, "<---without username")
+            console.log(deleteContent.username, "<---deletedcontent")
             const findUser = await User.findOne({'username': deleteContent.username});
             let index = findUser.content.indexOf(deleteContent._id)
             console.log(index, 'THIS IS THE INDEX WE NEED')

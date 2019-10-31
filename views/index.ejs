@@ -30,8 +30,11 @@
         <% for(let i = 0; i < users.length; i++) {%>
             <% for(let j = 0; j < users[i].content.length; j++) {%>
                     <li>
-                        <a href="/contents/<%=users[i].content[j]._id%>">
+                        <a href="/contents/<%=users[i].content[j]._id%>"> 
                             <iframe src="<%=content[j].url%>"></iframe>
+                        </a>
+                        <a href="/users/">
+                            <%=users[i].username%>
                         </a>
                     </li>
             <%}%>
