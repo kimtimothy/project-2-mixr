@@ -34,7 +34,11 @@
             <ul>
                 <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>
-                        <a href ="/contents/<%=user.content[i]._id%>"><iframe src="<%=content[i].url%>"></iframe></a>
+                        <a href ="/contents/<%=user.content[i]._id%>"><iframe src="<%=content[i].url%>"></iframe>
+                            <form action="/contents/<%=user.content[i]._id%>?_method=DELETE" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </a>
                     </li>
                 <%}%>
             </ul>

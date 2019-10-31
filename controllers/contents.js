@@ -60,8 +60,8 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
     try {
         const allUsers = await User.find({});
-        const foundContentUser = await User.findOne({'contents': req.params.id})
-                                           .populate({path: 'contents', match: {_id: req.params.id}})
+        const foundContentUser = await User.findOne({'content': req.params.id})
+                                           .populate({path: 'content', match: {_id: req.params.id}})
                                            .exec()
 
             res.render('contents/edit.ejs', {
@@ -81,11 +81,12 @@ router.post('/', async (req, res) => {
         const findUser = await User.findById(req.session.userId);
         console.log(req.session.userId, 'this is req body user id')
         console.log(findUser, 'this is user')
+        req.body.username = findUser.username
         const createContent = await Content.create(req.body);
         console.log(createContent, 'this is content')
         findUser.content.push(createContent);
         findUser.save()
-        res.redirect('/contents');
+        res.redirect('/home');
     } catch(err) {
         res.send(err)
     }
@@ -94,16 +95,14 @@ router.post('/', async (req, res) => {
 //delete
 router.delete('/:id', async (req, res) => {
     try {
-            const deleteContent = Content.findByIdAndRemove(req.params.id);
+            const deleteContent = await Content.findByIdAndRemove(req.params.id);
+            const findUser = await User.findOne({'username': deleteContent.username});
+            let index = findUser.content.indexOf(deleteContent._id)
+            console.log(index, 'THIS IS THE INDEX WE NEED')
+            findUser.content.splice(index, 1);
+            findUser.save()
 
-            const findUser = User.findOne({'contents': req.params.id});
-
-            const [deletedContentResponse, foundUser] = await Promise.all([deleteContent, findUser]);
-        
-            foundUser.contents.remove(req.params.id);
-            await foundUser.save()
-
-            res.redirect('/contents');
+            res.redirect('/home');
         } catch(err){
             res.send(err);
         }
@@ -115,7 +114,7 @@ router.put('/:id', async (req, res) => {
         const findUpdatedContent = Content.findByIdAndUpdate(req.params.id, req.body, {new: true});
         const findFoundUser = User.findOne({'contents': req.params.id});
 
-        const [updatedContent, foundUser] = await Promise.all([findUpdatedContent, findFoundUser]);
+        // const [updatedContent, foundUser] = await Promise.all([findUpdatedContent, findFoundUser]);
          
         if(foundUser._id.toString() != req.body.userId) {
             foundUser.contents.remove(req.params.id);

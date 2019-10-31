@@ -53,7 +53,10 @@ router.get('/:id', async (req, res) => {
 
 // profile
 router.get('/:id/profile', async (req, res) => {
-    console.log("this is hitting")
+    const foundUser = await User.findById(req.params.id)
+    const getContent = await Content.find({});
+    console.log(foundUser, 'this is found user')
+    console.log(getContent, 'this is found content')
     try {
         const foundUser = await User.findById(req.params.id)
         // console.log(foundUser + "THIS IS THE USER")
@@ -63,7 +66,7 @@ router.get('/:id/profile', async (req, res) => {
             // console.log(foundContent+"FOUND THE THING WE ARE PUSHING")
             contentObjects.push(foundContent)
         }
-        console.log(contentObjects)
+        // console.log(contentObjects)
         res.render('users/profile.ejs', {
             user: foundUser,
             content: contentObjects
@@ -77,6 +80,7 @@ router.get('/:id/profile', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
     try {
         const foundUser = await User.findById(req.params.id)
+        console.log(foundUser, "this is founduser")
         res.render('users/edit.ejs', {
             user: foundUser
         });
@@ -113,8 +117,17 @@ router.delete('/:id', async (req, res) => {
 //put
 router.put('/:id', async (req, res) => {
     try {
-    const updatedUser = User.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    res.redirect('/users')
+    const foundUser = await User.findById(req.params.id);
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    const oldName = foundUser.username;
+    console.log(oldName, 'this is old name')
+    console.log(req.body.username, 'this is user name')
+    const updateContent = await Content.updateMany({"username": oldName}, { $set: {'username': req.body.username}});
+    console.log(updateContent, 'this is update content')
+    console.log(updatedUser, 'this isUpdatedUser put')
+    req.session.userId = updatedUser._id;
+    console.log(req.session.userId, 'this is req sess id')
+    res.redirect('/users/'+req.session.userId+'/profile')
     } catch(err) {
         console.log(err)
     }
@@ -123,8 +136,10 @@ router.put('/:id', async (req, res) => {
 //login post
 router.post('/login', async (req, res) => {
     //to find if user exists
+    console.log('hit login route')
     try {
         const foundUser = await User.findOne({username: req.body.username})
+        console.log(foundUser, 'this is found user')
         if(foundUser) {
             if(bcrypt.compareSync(req.body.password, foundUser.password)){
                 req.session.message = '';
