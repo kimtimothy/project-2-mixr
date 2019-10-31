@@ -10,7 +10,7 @@
 <body>
         <%- include("../partials/navbar.ejs") %>
     <header>
-        <h1>Show page</h1>
+        <h1>Welcome to <%=user.username%>'s Page</h1>
         <nav>
             <ul>
                 <li>
@@ -30,7 +30,7 @@
             </ul>
         </section>
         <section>
-            <h2>User's Content</h2>
+            <h2><%=user.username%>'s Mix</h2>
             <ul>
                 <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>

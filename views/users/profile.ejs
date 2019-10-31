@@ -5,47 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <title></title>
+    <title>Profile</title>
 </head>
 <body>
         <%- include("../partials/navbar.ejs") %>
     <header>
-        <h1>User's Personal Profile</h1>
-        <nav>
+        <h1>My MixPage</h1>
+        <!-- <nav>
             <ul>
                 <li>
                     <a href="/users">User Index</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     </header>
     <main>
         <section>
-            <h2>User Attributes</h2>
-            <ul>
-                <li>Username: <%=user.username%></li>
-            </ul>
+            <h2>Hi <%=user.username%>!</h2>
         </section>
         <section>
-            <a href="/contents/new">Upload</a>
-        </section>
-        <section>
-            <h2>Your Mix</h2>
             <ul>
                 <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>
                         <a href ="/contents/<%=user.content[i]._id%>"><iframe src="<%=content[i].url%>"></iframe>
-                            <form action="/contents/<%=user.content[i]._id%>?_method=DELETE" method="POST">
-                                <button type="submit">Delete</button>
-                            </form>
                         </a>
+                        <p><%=content[i].description%></p>
+                            <form action="/contents/<%=user.content[i]._id%>?_method=DELETE" method="POST">
+                                <button type="submit">Delete Mix</button>
+                            </form>
                     </li>
                 <%}%>
             </ul>
         </section>
         <section>
+                <a href="/contents/new">Upload a new Mix</a>
+            </section>
+        <section>
                 <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-                    <button type="submit">Delete</button>
+                    <button type="submit">Delete Account</button>
                 </form>
             </section>
             <section>

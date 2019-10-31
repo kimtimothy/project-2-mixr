@@ -19,7 +19,7 @@
                     </li>
                     <% if(logged) { %>
                         <li>
-                            <a href ="/users/<%=currentUser%>/profile">View Profile</a>
+                            <a href ="/users/<%=currentUser%>/profile">View Your Profile</a>
                         </li>
                     <% } %>
                 </ul>
@@ -36,6 +36,7 @@
                         <a href="/contents/<%=users[i].content[j]._id%>"> 
                             <iframe src="<%=content[j].url%>"></iframe>
                         </a>
+                        <p><%=content[j].description%></p>
                     </li>
                     <%}%>
                     

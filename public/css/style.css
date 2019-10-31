@@ -3,6 +3,10 @@ body{
     margin: 6rem 0 0 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .nav{
     position: fixed;
     border-bottom: 1px solid black;
