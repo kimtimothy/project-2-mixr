@@ -8,23 +8,15 @@
 </head>
 <body>
         <%- include("../partials/navbar.ejs") %>
-    <header>
+    <!-- <header>
         <h1>Welcome to <%=user.username%>'s Page</h1>
         <nav>
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="/users">User Index</a>
-                </li>
-            </ul>
         </nav>
-    </header>
+    </header> -->
     <main>
         <section>
-            <h2><%=user.username%>'s Mix</h2>
-            <ul>
+            <h2 class="user-show-h2"><%=user.username%></h2>
+            <ul class="user-show-ul">
                 <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>
                         <a href ="/contents/<%=user.content[i]._id%>">
