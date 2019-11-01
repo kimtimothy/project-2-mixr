@@ -10,6 +10,16 @@ const isLoggedIn = (req, res, next) => {
         res.redirect('/')
     }
 }
+
+router.get('/edit', async (req, res) => {
+    try {
+            res.render('contents/edit.ejs')
+
+        } catch(err) {
+            res.send(err);
+        }   
+});
+
 //index
 router.get('/', async (req, res) => {
     
@@ -56,23 +66,25 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-//edit
-router.get('/:id/edit', async (req, res) => {
-    try {
-        const allUsers = await User.find({});
-        const foundContentUser = await User.findOne({'content': req.params.id})
-                                           .populate({path: 'content', match: {_id: req.params.id}})
-                                           .exec()
 
-            res.render('contents/edit.ejs', {
-                content: foundContentUser.contents[0],
-                users: allUsers,
-                contentUser: foundContentUser
-            });
-        } catch(err) {
-            res.send(err);
-        }   
-});
+
+//edit
+// router.get('/:id/edit', async (req, res) => {
+//     try {
+//         const allUsers = await User.find({});
+//         const foundContentUser = await User.findOne({'content': req.params.id})
+//                                            .populate({path: 'content', match: {_id: req.params.id}})
+//                                            .exec()
+
+//             res.render('contents/edit.ejs', {
+//                 content: foundContentUser.contents[0],
+//                 users: allUsers,
+//                 contentUser: foundContentUser
+//             });
+//         } catch(err) {
+//             res.send(err);
+//         }   
+// });
 
 //post
 router.post('/', async (req, res) => {

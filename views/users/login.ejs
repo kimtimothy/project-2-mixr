@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Document</title>
 </head>
+<header>
+    <h1 class="login-h1">Sign In</h1>
+</header>
 <body>
     <form action="/users/login" method="POST">
+        <div class="form-container">
             <div class="form-group">
               <label for="inputUsername">Username</label>
-              <input type="username" name="username" class="form-control" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter username">
+              <input type="username" name="username" class="form-control" aria-describedby="usernameHelp" placeholder="Enter username">
             </div>
             <div class="form-group">
               <label for="inputPassword">Password</label>
-              <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+              <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+    </form>
 </body>
 </html>

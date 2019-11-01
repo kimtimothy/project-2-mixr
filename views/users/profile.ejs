@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
     <title>Profile</title>
 </head>
 <body>
         <%- include("../partials/navbar.ejs") %>
     <header>
-        <h1>My MixPage</h1>
+        <h1 class="profile-h1">My MixPage</h1>
         <!-- <nav>
             <ul>
                 <li>
@@ -21,9 +21,10 @@
     </header>
     <main>
         <section>
-            <h2>Hi <%=user.username%>!</h2>
+            <h2 class="profile-h2">Hi <%=user.username%>!</h2>
         </section>
         <section>
+            <div class="profile-content">
             <ul>
                 <% for(let i = 0; i < user.content.length; i++) { %>
                     <li>
@@ -31,18 +32,19 @@
                         </a>
                         <p><%=content[i].description%></p>
                             <form action="/contents/<%=user.content[i]._id%>?_method=DELETE" method="POST">
-                                <button type="submit">Delete Mix</button>
+                                <button type="submit" class="btn btn-info btn-sm">Delete Mix</button>
                             </form>
                     </li>
                 <%}%>
             </ul>
+            </div>
         </section>
         <section>
                 <a href="/contents/new">Upload a new Mix</a>
             </section>
         <section>
                 <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Account</button>
+                    <button type="submit" class="btn btn-info">Delete Account</button>
                 </form>
             </section>
             <section>

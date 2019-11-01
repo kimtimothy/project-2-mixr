@@ -1,10 +1,14 @@
 body {
     background-color: white;
-    margin: 6rem 0 0 0;
 }
 
 ul {
     list-style-type: none;
+}
+
+/* NAVBAR */
+.navbar-brand {
+    font-family: 'Monoton', cursive;
 }
 
 /*ROUTE PAGE*/
@@ -19,14 +23,13 @@ ul {
 
 .carousel-text {
     z-index: 1;
-    
 }
 
 .pcontainer {
-    background-color: rgba(0,0,0, 0.5);
+    border: solid black 1px;
     padding: 100px 0 100px 0;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 30px;
     width: 600px;
     height: 100px;
     text-align: center;
@@ -35,7 +38,7 @@ ul {
 
 .mixrp {
     text-align: center;
-    padding: 0 0 100px 0;
+    padding: 0 20px 0 20px;
     font-size: 10pt;
     position: relative;
 }
@@ -64,6 +67,8 @@ ul {
     padding: 0;
     text-align: center;
     color: black;
+    font-size: 30pt;
+    font-family: 'Monoton', cursive;
 }
 
 .mixr {
@@ -72,141 +77,52 @@ ul {
 
 /*HOME PAGE*/
 .card {
-    text-align: center;
     border: solid black 3px;
+    text-align: center;
 }
 
-/*NAV BAR*/
-.nav{
-    position: fixed;
-    border-bottom: 1px solid black;
-    width: 100%;
-    height: 8%;
-    top: 0;
-    background-color: rgba(255, 255 , 255, 0.698);
-}
-
-.nav-header{
-    max-width: 75%;
-    margin: 0 auto;
+.home-cards {
     display: flex;
-    padding: 0;
+    flex-direction: column;
     align-items: center;
 }
-
-.nav-left{
-    width: 33.333%;
-    text-align: left;
-    padding: 15px;
-}
-
-.nav-center{
-    width: 33.333%;
+.home-mixr {
+    font-family: 'Monoton', cursive;
     text-align: center;
 }
 
-.nav-right{
-    width: 60%;
-    text-align: right;
-}
+/*LOGIN*/
 
-.nav-link{
-    text-decoration: none;
-    margin-left: 3%;
-    text-transform: uppercase;
-    color: black
-}
-
-.nav-link:hover{
-    color: dodgerblue;
-    cursor: pointer;
-}
-
-.hamburger-menu {
-    width: 40px;
-    height: 25px;
-    position: relative;
-    margin: 14px 15% 0 auto;
-    z-index: 2;
-    /* display: none; */
-}
-
-.bar {
-    display: block;
-    position: absolute;
-    width: 25px;
-    height: 3px;
-    left: 0;
-    border-radius: 6px;
-    background-color: black;
-    transition: all .50s ease-in-out;
-}
-
-.bar:nth-child(1){
-    top: 0px;
-}
-
-.bar:nth-child(2){
-    top: 22.5%;
-}
-
-.bar:nth-child(3){
-    top: 45%;
-}
-
-.open > .bar {
-    transition: all .50 ease-in-out;
-    color: white;
-}
-
-.open > .bar:nth-child(1) {
-    top: 45%;
-    transform: rotate(135deg);
-}
-
-.open > .bar:nth-child(2) {
-    left: -60px;
-    opacity: 0;
-}
-
-.open > .bar:nth-child(3) {
-    top: 45%;
-    transform: rotate(-135deg);
-}
-
-.overlay {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    position: fixed;
-    background-color: rgba(0,0,0, 0.698);
-    top: 0;
-    left: -130rem;
-    z-index: 1;
-    transition: all .60s ease-in-out;
-}
-
-.overlay.show {
-    left: 0;
-}
-
-.overlay-content {
-    position: relative;
-    top: 15%;
-    width: 100%;
+.form-container {
     text-align: center;
-    margin-top: 30px;
+    width: 30%;
+    margin: 0 auto;
 }
 
-.overlay-link {
-    color: white;
-    text-decoration: none;
-    font-size: 36px;
-    display: block;
+.login-h1 {
+    text-align: center;
 }
+
+.signup-h1 {
+    text-align: center;
+}
+
+/* PROFILE */
+.profile-h1 {
+    text-align: center;
+}
+
+.profile-h2 {
+    text-align: center;
+}
+
+.profile-content {
+    text-align: center;
+}
+
 
 @media (max-width: 865px) {
-    .hamburger-menu {
+    #hamburger-menu {
         display: block;
     }
 

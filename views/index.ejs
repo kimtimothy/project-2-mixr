@@ -2,21 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Red+Hat+Display|Righteous|Russo+One&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
+<%- include("./partials/navbar.ejs") %>
 <body>
-    <%- include("./partials/navbar.ejs") %>
     <header>
-        <h1>Home Page</h1>
+        <h1 class="home-mixr">Mixs</h1>
             <nav>
                 <ul>
-                    <li>
-                        <a href="/users">Users</a>
-                    </li>
-                    <li>
-                        <a href="/contents">Contents</a>                    
-                    </li>
                     <% if(logged) { %>
                         <li>
                             <a href ="/users/<%=currentUser%>/profile">View Your Profile</a>
@@ -26,9 +21,10 @@
             </nav>
     </header>
     <main>
-        <ul>
+    <div class="home-cards">
         <% for(let i = 0; i < users.length; i++) {%>
             <% for(let j = 0; j < users[i].content.length; j++) {%>
+            <div class="home-cards-inner">
                 <div class="card" style="width: 31rem;">
                     <a href="/contents/<%=users[i].content[j]._id%>" class="card-img-top"> 
                         <iframe src="<%=content[j].url%>"></iframe>
@@ -39,7 +35,8 @@
                         <a href="/users/<%=users[i]._id%>" class="btn btn-primary"><%=users[i].username%></a>
                     </div>
                 </div>
-
+            </div>
+    
                 <!-- <li>
                         <a href="/users/users[i]._id%>">users[i].username%></a>
                     </li>
@@ -52,7 +49,8 @@
                     <%}%>
                     
             <%}%>
-        </ul>
+        <!-- </ul> -->
+        </div>
     </main>
 </body>
 </html>
