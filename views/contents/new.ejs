@@ -9,17 +9,26 @@
 <body>
         <%- include("../partials/navbar.ejs") %>
     <header>
-        <!-- <button action="/">Home</button> -->
-    </header>
-    <header>
-        <h1>Upload Your Mix</h1>
+        <h1 class="upload-h1">Upload Your Mix</h1>
     </header>
     <main>
-        <form action="/contents" method="post">
+        <!-- <form action="/contents" method="post">
             <input type="url" name="url" placeholder="Enter url">
             <textarea type="text" name="description" placeholder="Enter a description" rows="5" cols="25"></textarea>
             <button type="submit">Upload</button>
-        </form>
+        </form> -->
+
+        <form action="/contents" method="post">
+                <div class="form-group">
+                  <label for="urlInput">URL</label>
+                  <input type="url" name="url" class="form-control" id="urlInput" placeholder="url">
+                </div>
+                <div class="form-group">
+                  <label for="descriptionTextarea">Description</label>
+                  <textarea class="form-control" name="description" id="descriptionTextarea" rows="3" placeholder="description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+              </form>
     </main>
 </body>
 </html>

@@ -10,7 +10,7 @@
         <%- include("../partials/navbar.ejs") %>
     <main>
         <section>
-            <h2 class="profile-h2">Hello, <%=user.username%></h2>
+            <h2 class="profile-h2"><%=user.username%></h2>
         </section>
         <section>
             <div class="profile-content">
@@ -28,17 +28,18 @@
             </ul>
             </div>
         </section>
-        <section>
+        <section >
                 <a href="/contents/new" class="btn btn-info" id="profile-upload">Upload a new Mix</a>
         </section>
-        <section>
+        <section class="profile-edit">
+                <a href="/users/<%=user._id%>/edit" class="btn btn-info btn-sm">Edit User</a>
+        </section>
+        <section class="profile-delete">
                 <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-info btn-sm" id="profile-delete">Delete Account</button>
+                    <button type="submit" class="btn btn-info btn-sm">Delete Account</button>
                 </form>
         </section>
-        <section class="profile-edit">
-                <a href="/users/<%=user._id%>/edit" class="btn btn-info btn-sm">Edit</a>
-        </section>
+            
     </main>
 </body>
 </html>

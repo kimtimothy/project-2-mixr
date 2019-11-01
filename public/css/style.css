@@ -116,8 +116,14 @@ header {
     align-items: right;
 }
 
-#profile-delete {
+.profile-delete {
+    margin-top: 500px;
+    padding: 10px;
+}
 
+.profile-edit {
+    padding: 10px;
+    text-align: right;
 }
 
 .view-profile {
@@ -154,6 +160,12 @@ header {
 }
 
 .content-explore {
+    text-align: center;
+    font-family: 'Monoton', cursive;
+}
+
+/* NEW CONTENT */
+.upload-h1 {
     text-align: center;
     font-family: 'Monoton', cursive;
 }
