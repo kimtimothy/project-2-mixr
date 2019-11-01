@@ -1,5 +1,5 @@
 # project-2-mixr
-![Image of initia screen](https://imgur.com/nNBOsAc)
+![Image of initia screen](https://i.imgur.com/nNBOsAc.png)
 
 
 
