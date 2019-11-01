@@ -82,6 +82,10 @@ header {
     text-align: center;
 }
 
+.card-img-top {
+    margin-top: 15px;
+}
+
 /*LOGIN*/
 .form-container {
     text-align: center;
