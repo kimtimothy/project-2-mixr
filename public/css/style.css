@@ -12,12 +12,12 @@ ul {
 }
 
 /*ROUTE PAGE*/
-.signup {
+#signup {
     padding: 0 20px 0 10px;
     font-size: 12pt;
 }
 
-.login {
+#login {
     padding: 0 0 0 50px;
     font-size: 12pt;
 }
@@ -76,6 +76,7 @@ header {
     flex-direction: column;
     align-items: center;
 }
+
 .home-mixr {
     font-family: 'Monoton', cursive;
     text-align: center;
@@ -122,12 +123,16 @@ header {
 }
 
 .profile-edit {
-    padding: 10px;
-    text-align: right;
+    padding: 30px;
+    text-align: center;
 }
 
 .view-profile {
     padding: 0 30px 0 0;
+}
+
+.delete-mix-form{
+    padding: 10px
 }
 
 /* USER-INDEX */
@@ -168,4 +173,9 @@ header {
 .upload-h1 {
     text-align: center;
     font-family: 'Monoton', cursive;
+}
+
+/* USER EDIT */
+.user-edit-h1 {
+    text-align: center;
 }

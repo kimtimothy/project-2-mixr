@@ -20,9 +20,10 @@
                         <a href ="/contents/<%=user.content[i]._id%>"><iframe src="<%=content[i].url%>"></iframe>
                         </a>
                         <p><%=content[i].description%></p>
-                            <form action="/contents/<%=user.content[i]._id%>?_method=DELETE" method="POST">
+                        <a href="/contents/<%=user.content[i]._id%>/edit" class="btn btn-outline-info btn-sm">Edit Content</a>
+                            <form action="/contents/<%=user.content[i]._id%>?_method=DELETE" method="POST" class="delete-mix-form"> 
                                 <button type="submit" class="btn btn-info btn-sm">Delete Mix</button>
-                            </form>
+                            </form>       
                     </li>
                 <%}%>
             </ul>
@@ -36,7 +37,7 @@
         </section>
         <section class="profile-delete">
                 <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-info btn-sm">Delete Account</button>
+                    <button type="submit" class="btn btn btn-danger btn-sm">Delete Account</button>
                 </form>
         </section>
             
