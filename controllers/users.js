@@ -130,18 +130,12 @@ router.delete('/:id', async (req, res) => {
 //put
 router.put('/:id', async (req, res) => {
     try {
-    const foundUser = await User.findById(req.params.id);
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    const oldName = foundUser.username;
-    console.log(oldName, 'this is old name')
-    console.log(req.body.username, 'this is user name')
-    const updateContent = await Content.updateMany({"username": oldName}, { $set: {'username': req.body.username}});
-
-    console.log(updateContent, 'this is update content')
-    console.log(updatedUser, 'this isUpdatedUser put')
-    req.session.userId = updatedUser._id;
-    console.log(req.session.userId, 'this is req sess id')
-    res.redirect('/users/'+req.session.userId+'/profile')
+        const foundUser = await User.findById(req.params.id);
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        const oldName = foundUser.username;
+        const updateContent = await Content.updateMany({"username": oldName}, { $set: {'username': req.body.username}});
+        req.session.userId = updatedUser._id;
+        res.redirect('/users/'+req.session.userId+'/profile')
     } catch(err) {
         console.log(err)
     }

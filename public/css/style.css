@@ -10,6 +10,13 @@ ul {
 .navbar-brand {
     font-family: 'Monoton', cursive;
 }
+#mixrs {
+    font-family: 'Monoton', cursive;
+}
+
+#explore {
+    font-family: 'Monoton', cursive;
+}
 
 /*ROUTE PAGE*/
 #signup {
@@ -181,5 +188,10 @@ header {
 
 /* USER EDIT */
 .user-edit-h1 {
+    text-align: center;
+}
+
+/* CONTENT EDIT */
+.edit-content-h1 {
     text-align: center;
 }

@@ -11,14 +11,18 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 
-router.get('/edit', async (req, res) => {
+//edit
+router.get('/:id/edit', async (req, res) => {
     try {
-            res.render('contents/edit.ejs')
+            res.render('contents/edit.ejs', {
+                content: req.params.id
+            });
 
         } catch(err) {
             res.send(err);
         }   
 });
+
 
 //index
 router.get('/', async (req, res) => {
@@ -57,6 +61,7 @@ router.get('/:id', async (req, res) => {
                                              }
                                          )
                                          .exec()
+                                         console.log(foundUser + "THIS IS HITTING")
             res.render('contents/show.ejs', {
                 user: foundUser,
                 content: foundUser.contents[0]
@@ -65,6 +70,7 @@ router.get('/:id', async (req, res) => {
         res.send(err);
     }
 });
+
 
 //post
 router.post('/', async (req, res) => {
@@ -120,13 +126,12 @@ router.put('/:id', async (req, res) => {
 
             const savedNewUser = await newUser.save();
 
-            res.redirect('/contents/' + req.params.id);
+            res.redirect('/home');
             } else {
-                res.redirect('/contents/' + req.params.id);
+                res.redirect('/home');
             }
         } catch(err) {
             console.log(err);
-            res.send(err);
         }
 });
 
