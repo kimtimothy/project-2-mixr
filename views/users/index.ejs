@@ -9,13 +9,15 @@
 <body>
     <%- include("../partials/navbar.ejs") %>
     <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/users/signup">Create New User</a>
-                </li>
-            </ul>
-        </nav>
+            <nav>
+                <ul>
+                    <% if(logged) { %>
+                        <li>
+                            <a href ="/users/<%=currentUser%>/profile" class="view-profile">View Your Profile</a>
+                        </li>
+                    <% } %>
+                </ul>
+            </nav>
     </header>
     <main>
         <h2 class="user-index-h2">Mixrs</h2>

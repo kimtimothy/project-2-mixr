@@ -25,6 +25,7 @@ ul {
 header {
     text-align: right;
 }
+
 .carouselimg {
     height: 300px;
     width: 600px;
@@ -39,21 +40,17 @@ header {
 }
 
 .pcontainer {
-    border: solid black 1px;
-    padding: 100px 0 100px 0;
-    margin: 0 auto;
-    margin-top: 30px;
+    margin: 30px auto;
     width: 600px;
     height: 100px;
-    text-align: center;
-    
+    position: relative;
 }
 
 .mixrp {
-    text-align: center;
-    padding: 0 20px 0 20px;
+    padding: 30px 20px 0 20px;
     font-size: 10pt;
-    position: relative;
+    text-align: center;
+    font-style: italic;
 }
 
 .welcome {
@@ -117,11 +114,14 @@ header {
     display: flex;
     flex-direction: column;
     align-items: right;
-
 }
 
 #profile-delete {
 
+}
+
+.view-profile {
+    padding: 0 30px 0 0;
 }
 
 /* USER-INDEX */
@@ -142,6 +142,18 @@ header {
 }
 
 .user-show-h2 {
+    text-align: center;
+    font-family: 'Monoton', cursive;
+}
+
+/* EXPLORE CONTENT */
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.content-explore {
     text-align: center;
     font-family: 'Monoton', cursive;
 }

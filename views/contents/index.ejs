@@ -9,17 +9,17 @@
 <body>
     <%- include("../partials/navbar.ejs") %>
     <header>
-        <h1>Explore</h1>
+        <h1 class="content-explore">Explore</h1>
     </header>
 <main>
-    <ul>
-    <% for(let i = 0; i < contents.length; i++) {%>
-        <li>
-            <a href="/contents/<%=contents[i]._id%>">
-                <iframe src="<%=contents[i].url%>"></iframe></a>
-        </li>
-    <%}%>
-    </ul>   
+    <div class="grid-container">
+            <% for(let i = 0; i < contents.length; i++) {%>
+                <div class="grid-item">
+                    <a href="/contents/<%=contents[i]._id%>">
+                    <iframe src="<%=contents[i].url%>"></iframe></a>
+                </div>
+            <%}%> 
+    </div>  
 </main>
 </body>
 </html>

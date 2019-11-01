@@ -14,7 +14,7 @@
                 <ul>
                     <% if(logged) { %>
                         <li>
-                            <a href ="/users/<%=currentUser%>/profile">View Your Profile</a>
+                            <a href ="/users/<%=currentUser%>/profile" class="view-profile">View Your Profile</a>
                         </li>
                     <% } %>
                 </ul>
@@ -27,7 +27,7 @@
             <div class="home-cards-inner">
                 <div class="card" style="width: 31rem;">
                     <a href="/contents/<%=users[i].content[j]._id%>" class="card-img-top"> 
-                        <iframe src="<%=content[j].url%>"></iframe>
+                        <iframe src="<%=users[i].content[j].url%>"></iframe>
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Description</h5>

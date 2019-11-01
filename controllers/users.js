@@ -5,11 +5,13 @@ const Content = require('../models/contents')
 const bcrypt = require('bcryptjs');
 
 //index
-router.get('/', async (req, res) => { //to show all the work of that user
+router.get('/', async (req, res) => { 
     try {
         const allUsers = await User.find({})
         res.render('users/index.ejs', {
                 users: allUsers,
+                currentUser: req.session.userId,
+                logged: req.session.logged
         });
     } catch(err) {
         console.log(err)

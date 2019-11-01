@@ -30,15 +30,15 @@
         </section>
         <section>
                 <a href="/contents/new" class="btn btn-info" id="profile-upload">Upload a new Mix</a>
-            </section>
+        </section>
         <section>
                 <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-info" id="profile-delete">Delete Account</button>
+                    <button type="submit" class="btn btn-info btn-sm" id="profile-delete">Delete Account</button>
                 </form>
-            </section>
-            <section>
+        </section>
+        <section class="profile-edit">
                 <a href="/users/<%=user._id%>/edit" class="btn btn-info btn-sm">Edit</a>
-            </section>
+        </section>
     </main>
 </body>
 </html>
