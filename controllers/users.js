@@ -170,7 +170,7 @@ router.post('/login', async (req, res) => {
     } catch(err) {
         console.log(err)
     }
-    });
+});
 
 //registration post
 router.post('/signup', async (req, res) => {

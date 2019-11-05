@@ -4,6 +4,7 @@
   "description": "# Mixr is a social media website made specifically for artists and musicians.  # It is a space for artists all across the globe to connect, create, and collaborate.  # Artists can post finished or unfinished ideas with the purpose of being peer-reviewed, seeking collaborative opportunities, or simply to show off.",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
     "async-await": "^0.1.40",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",

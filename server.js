@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const PORT = 3333;
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -9,8 +8,11 @@ const Content = require('./models/contents')
 const usersController = require('./controllers/users')
 const contentsController = require('./controllers/contents')
 
+require('dotenv').config()
+
 require('./db/db')
 
+const PORT = process.env.PORT;
 
 app.use(session({
     secret: "this is a random secret string",
@@ -62,6 +64,6 @@ app.get('/home', async (req,res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('listening on port', 3333)
+    console.log(`listening on port ${PORT}`)
 });
 
