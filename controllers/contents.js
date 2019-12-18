@@ -45,7 +45,9 @@ router.get('/new', isLoggedIn, async (req, res) => {
         const allUsers = await User.find();
 
             res.render('contents/new.ejs', {
-                users: allUsers
+                users: allUsers,
+                currentUser: req.session.userId,
+                logged: req.session.logged
             });
     } catch(err) {
         res.send(err)
