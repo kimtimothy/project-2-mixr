@@ -195,3 +195,20 @@ header {
 .edit-content-h1 {
     text-align: center;
 }
+
+/* HOME CARDS */
+.home-cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; 
+}
+
+.p-description{
+    min-height: 7rem;
+}
+
+.card{
+  margin: 10px;
+}

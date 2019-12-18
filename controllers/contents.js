@@ -111,14 +111,14 @@ router.delete('/:id', async (req, res) => {
 //put
 router.put('/:id', async (req, res) => {
     try {
-        const findUpdatedContent = Content.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        const findFoundUser = User.findOne({'contents': req.params.id});
+        console.log(req.body)
+        const updatedContent = Content.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const foundUser = await User.findOne({'content': req.params.id});
 
         // const [updatedContent, foundUser] = await Promise.all([findUpdatedContent, findFoundUser]);
-         
-        if(foundUser._id.toString() != req.body.userId) {
+         console.log(foundUser)
+        if(foundUser) {
             foundUser.contents.remove(req.params.id);
-
             await foundUser.save();
 
             const newUser = await User.findById(req.body.userId);
