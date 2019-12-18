@@ -57,7 +57,9 @@ router.get('/:id', async (req, res) => {
         }
         res.render('users/show.ejs', {
             user: foundUser,
-            content: contentObjects
+            content: contentObjects,
+            currentUser: req.session.userId,
+            logged: req.session.logged
         })
     } catch(err){
         console.log(err)
