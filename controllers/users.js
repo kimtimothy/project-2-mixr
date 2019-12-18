@@ -82,7 +82,9 @@ router.get('/:id/profile', async (req, res) => {
         // console.log(contentObjects)
         res.render('users/profile.ejs', {
             user: foundUser,
-            content: contentObjects
+            currentUser: req.session.userId,
+            content: contentObjects,
+            logged: req.session.logged
         });
     } catch(err){
         console.log(err)

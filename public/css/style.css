@@ -18,13 +18,19 @@ ul {
     font-family: 'Monoton', cursive;
 }
 
+.dropdown-menu.show {
+    margin-left: -65px;
+}
+
 /*ROUTE PAGE*/
 #signup {
     font-size: 12pt;
+    margin: 10px 20px 0 0;
 }
 
 #login {
     font-size: 12pt;
+    margin: 10px 5px 0 0;
 }
 
 header {

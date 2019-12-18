@@ -8,17 +8,7 @@
 </head>
 <body>
     <%- include("../partials/navbar.ejs") %>
-    <header>
-            <nav>
-                <ul>
-                    <% if(logged) { %>
-                        <li>
-                            <a href ="/users/<%=currentUser%>/profile" class="view-profile">View Your Profile</a>
-                        </li>
-                    <% } %>
-                </ul>
-            </nav>
-    </header>
+ 
     <main>
         <h2 class="user-index-h2">Mixrs</h2>
         <ul class="user-index-ul">

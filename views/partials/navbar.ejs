@@ -30,6 +30,9 @@
                     More
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <% if(logged) { %>
+                                  <a href ="/users/<%=currentUser%>/profile" class="view-profile">My Profile</a>
+                          <% } %>
                     <a class="dropdown-item" id="mixrs" href="/users">Mixrs</a>
                     <a class="dropdown-item" href="/contents" id="explore">Explore</a>
                     <div class="dropdown-divider"></div>
