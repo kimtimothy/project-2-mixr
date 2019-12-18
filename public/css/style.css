@@ -10,6 +10,11 @@ ul {
 .navbar-brand {
     font-family: 'Monoton', cursive;
 }
+
+#myprofile {
+    font-family: 'Monoton', cursive;
+}
+
 #mixrs {
     font-family: 'Monoton', cursive;
 }
@@ -144,10 +149,6 @@ header {
     text-align: center;
 }
 
-.view-profile {
-    padding: 0 30px 0 0;
-}
-
 .delete-mix-form{
     padding: 10px
 }
@@ -179,6 +180,7 @@ header {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .content-explore {

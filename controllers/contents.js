@@ -30,7 +30,9 @@ router.get('/', async (req, res) => {
     try {
         const allContents = await Content.find({});
             res.render('contents/index.ejs', {
-                contents: allContents
+                contents: allContents,
+                logged: req.session.logged,
+                currentUser: req.session.userId,
             });
         } catch(err) {
             res.send(err);
