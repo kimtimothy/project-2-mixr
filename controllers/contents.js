@@ -14,13 +14,21 @@ const isLoggedIn = (req, res, next) => {
 //edit
 router.get('/:id/edit', async (req, res) => {
     try {
+        const allUsers = await User.find({})
+        const foundContentUser = await User.findOne({'content': req.params.id})
+                                .populate({path:'content',
+                                match: {_id: req.params.id}})
+                                .exect()
+    console.log(req.params.id, 'req.params.id') 
+    console.log(req.params.userId, 'req.params.id')                 
             res.render('contents/edit.ejs', {
-                content: req.params.id
+                content: foundContentUser.contents[0],
+                users: allUsers,
+                contentUser: foundContentUser
             });
-
-        } catch(err) {
-            res.send(err);
-        }   
+    } catch(err) {
+        res.send(err);
+    }   
 });
 
 
