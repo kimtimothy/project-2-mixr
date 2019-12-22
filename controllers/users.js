@@ -20,13 +20,11 @@ router.get('/', async (req, res) => {
 
 //new user
 router.get('/signup', (req, res) => {
-    console.log('hit the signup route')
     res.render('users/registration.ejs')
 });
 
 //login route
 router.get('/login', (req, res) => {
-    console.log('hit the login route')
     res.render('users/login.ejs')
 });
 
@@ -45,14 +43,11 @@ router.get('/logout', (req, res) => {
 router.get('/:id', async (req, res) => {
     const foundUser = await User.findById(req.params.id)
     const getContent = await Content.find({});
-    console.log(foundUser, 'this is found user')
-    console.log(getContent, 'this is found content')
     try {
         const foundUser = await User.findById(req.params.id)
         const contentObjects = [];
         for (let i = 0; i < foundUser.content.length; i++){
             let foundContent = await Content.findById(foundUser.content[i])
-            // console.log(foundContent+"FOUND THE THING WE ARE PUSHING")
             contentObjects.push(foundContent)
         }
         res.render('users/show.ejs', {
@@ -70,18 +65,13 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/profile', async (req, res) => {
     const foundUser = await User.findById(req.params.id)
     const getContent = await Content.find({});
-    console.log(foundUser, 'this is found user')
-    console.log(getContent, 'this is found content')
     try {
         const foundUser = await User.findById(req.params.id)
-        // console.log(foundUser + "THIS IS THE USER")
         const contentObjects = [];
         for (let i = 0; i < foundUser.content.length; i++){
             let foundContent = await Content.findById(foundUser.content[i])
-            // console.log(foundContent+"FOUND THE THING WE ARE PUSHING")
             contentObjects.push(foundContent)
         }
-        // console.log(contentObjects)
         res.render('users/profile.ejs', {
             user: foundUser,
             currentUser: req.session.userId,
@@ -97,7 +87,6 @@ router.get('/:id/profile', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
     try {
         const foundUser = await User.findById(req.params.id)
-        console.log(foundUser, "this is founduser")
         res.render('users/edit.ejs', {
             user: foundUser
         });
@@ -147,11 +136,8 @@ router.put('/:id', async (req, res) => {
 
 //login post
 router.post('/login', async (req, res) => {
-    //to find if user exists
-    console.log('hit login route')
     try {
         const foundUser = await User.findOne({username: req.body.username})
-        console.log(foundUser, 'this is found user')
         if(foundUser) {
             if(bcrypt.compareSync(req.body.password, foundUser.password)){
                 req.session.message = '';
@@ -159,7 +145,6 @@ router.post('/login', async (req, res) => {
                 req.session.username = req.body.username
                 req.session.logged = true;
                 req.session.userId = foundUser._id;
-                console.log(req.session)
     
                 res.redirect('/users/'+req.session.userId+'/profile');
             } else {
@@ -193,7 +178,6 @@ router.post('/signup', async (req, res) => {
             userDbEntry.password = passwordHash;
     
             const createdUser = await User.create(userDbEntry);
-            console.log(createdUser)
             req.session.username = createdUser.username;
             req.session.userId = createdUser._id;
             req.session.logged = true;

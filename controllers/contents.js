@@ -19,8 +19,6 @@ router.get('/:id/edit', async (req, res) => {
                                 .populate({path:'content',
                                 match: {_id: req.params.id}})
                                 .exect()
-    console.log(req.params.id, 'req.params.id') 
-    console.log(req.params.userId, 'req.params.id')                 
             res.render('contents/edit.ejs', {
                 content: foundContentUser.contents[0],
                 users: allUsers,
@@ -73,7 +71,6 @@ router.get('/:id', async (req, res) => {
                                              }
                                          )
                                          .exec()
-                                         console.log(foundUser + "THIS IS HITTING")
             res.render('contents/show.ejs', {
                 user: foundUser,
                 content: foundUser.contents[0]
@@ -86,14 +83,10 @@ router.get('/:id', async (req, res) => {
 
 //post
 router.post('/', async (req, res) => {
-    console.log('hit the post content route')
     try {
         const findUser = await User.findById(req.session.userId);
-        console.log(req.session.userId, 'this is req body user id')
-        console.log(findUser, 'this is user')
         req.body.username = findUser.username
         const createContent = await Content.create(req.body);
-        console.log(createContent, 'this is content')
         findUser.content.push(createContent);
         findUser.save()
         res.redirect('/home');
@@ -106,11 +99,8 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
             const deleteContent = await Content.findByIdAndRemove(req.params.id);
-            console.log(deleteContent, "<---without username")
-            console.log(deleteContent.username, "<---deletedcontent")
             const findUser = await User.findOne({'username': deleteContent.username});
             let index = findUser.content.indexOf(deleteContent._id)
-            console.log(index, 'THIS IS THE INDEX WE NEED')
             findUser.content.splice(index, 1);
             findUser.save()
 
