@@ -113,6 +113,7 @@ router.delete('/:id', async (req, res) => {
 //put
 router.put('/:id', async (req, res) => {
     try {
+        console.log(req.body)
         const updatedContent = await Content.findByIdAndUpdate(req.params.id, req.body, {new: true});
         const foundUser = await User.findOne({'content': req.params.id});
         if(foundUser) {
