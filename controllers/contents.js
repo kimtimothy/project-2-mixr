@@ -18,7 +18,8 @@ router.get('/:id/edit', async (req, res) => {
         const foundContentUser = await User.findOne({'content': req.params.id})
                                 .populate({path:'content',
                                 match: {_id: req.params.id}})
-                                .exect()
+                                .exec()
+        console.log(foundContentUser, 'foundContUser')
             res.render('contents/edit.ejs', {
                 content: foundContentUser.contents[0],
                 users: allUsers,

@@ -27,6 +27,10 @@ ul {
     margin-left: -65px;
 }
 
+.nav-link {
+    color: black;
+}
+
 /*ROUTE PAGE*/
 #signup {
     font-size: 12pt;
