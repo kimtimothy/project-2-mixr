@@ -19,9 +19,8 @@ router.get('/:id/edit', async (req, res) => {
                                 .populate({path:'content',
                                 match: {_id: req.params.id}})
                                 .exec()
-        console.log(foundContentUser, 'foundContUser')
             res.render('contents/edit.ejs', {
-                content: foundContentUser.contents[0],
+                content: foundContentUser.content[0],
                 users: allUsers,
                 contentUser: foundContentUser
             });
@@ -114,20 +113,17 @@ router.delete('/:id', async (req, res) => {
 //put
 router.put('/:id', async (req, res) => {
     try {
-        console.log(req.body)
-        const updatedContent = Content.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const updatedContent = await Content.findByIdAndUpdate(req.params.id, req.body, {new: true});
         const foundUser = await User.findOne({'content': req.params.id});
-
-        // const [updatedContent, foundUser] = await Promise.all([findUpdatedContent, findFoundUser]);
-         console.log(foundUser)
         if(foundUser) {
-            foundUser.contents.remove(req.params.id);
-            await foundUser.save();
-
-            const newUser = await User.findById(req.body.userId);
-            newUser.contents.push(updatedContent);
-
-            const savedNewUser = await newUser.save();
+                console.log(foundUser.content, '<---i')
+                foundUser.content.remove(req.params.id);
+                await foundUser.save();
+                const newUser = await User.findById(req.body.userId);
+                newUser.content.push(updatedContent);
+    
+                const savedNewUser = await newUser.save();
+            
 
             res.redirect('/home');
             } else {

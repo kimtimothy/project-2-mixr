@@ -31,8 +31,7 @@ app.use('/contents', contentsController)
 
 
 //route page
-app.get('/', (req,res) => {
-    console.log(req.session, 'home route')
+app.get('/', (req, res) => {
     res.render('route.ejs')
 });
 
@@ -42,12 +41,9 @@ app.get('/home', async (req,res) => {
         res.redirect('/')
     }
     try{
-        console.log(req.session, 'home route')
         const allUsers = await User.find({})
-        console.log(req.session.userId, 'idddd')
         const users = await User.find({}).populate('content')
         const content = await Content.find({})
-        console.log(allUsers, 'this is founduserrr')
         res.render('index.ejs', {
             message: req.session.message,
             logOut: req.session.logOutMsg,
